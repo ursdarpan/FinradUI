@@ -1,36 +1,34 @@
 package com.example.demo.Service;
 
-import com.example.demo.entities.Company;
+import com.example.demo.dao.CustomerOrderDAO;
 import com.example.demo.entities.CustomerOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class CustomerOrderServiceImpl implements CustomerOrderService{
+    @Autowired
+    CustomerOrderDAO customerOrderDAO;
     @Override
     public CustomerOrder acceptCustomerOrder(CustomerOrder customerOrder) {
-        return null;
+        return customerOrderDAO.save(customerOrder);
     }
-
     @Override
     public Integer updateCustomerOrder(int id, CustomerOrder customerOrder) {
         return null;
     }
 
     @Override
-    public Company getCustomerOrderDetails(int id) {
-        return null;
-    }
-
-    @Override
     public boolean deleteCustomerOrder(int id) {
-        return false;
+        customerOrderDAO.delete(this.getCustomerOrderById(id));
+        return true;
     }
 
     @Override
     public CustomerOrder getCustomerOrderById(int id) {
-        return null;
+        return customerOrderDAO.findById(id).get();
     }
 
     @Override

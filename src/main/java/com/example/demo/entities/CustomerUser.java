@@ -1,6 +1,6 @@
 package com.example.demo.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,11 +29,7 @@ public class CustomerUser {
     private String emailId;
     @Column(nullable = false)
     private String mobileNumber;
-
     @ManyToOne
     @JoinColumn(name="companyId",nullable = true)
     private Company company;
-
-    @OneToMany(mappedBy="customerUser",cascade = CascadeType.ALL)
-    private Set<CustomerOrder> customerOrderSet;
 }
